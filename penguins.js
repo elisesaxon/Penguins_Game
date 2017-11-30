@@ -2,21 +2,17 @@
 
 window.onload = function() {
 	document.body.style.backgroundColor = "#ccf5f5";
-	
-    /*var para = document.createElement("P");
-    var t = document.createTextNode("This is a paragraph.");
-    para.appendChild(t);
-    document.body.appendChild(para);*/
+    
 	var dropdown = document.createElement("select");
 	for(i=0; i<=64; i++) {
-		var option = dropdown.appendChild(option);
+		var option = document.createElement("option");
 		option.value = i;
-		option.attribute = i;
+		option.text = String(i);
 		
-		dropdown.appendChild(option);
+		dropdown.options.add(option);
 	}
 		
-	document.appendChild(dropdown);
+	document.body.appendChild(dropdown);
 	
 	/*dropdown.onchange = selectNumPenguins(value);
 	
