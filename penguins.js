@@ -92,6 +92,9 @@ window.onload = function() {
 	
 	yeti[0].onmousedown = function() {
 		this.style.backgroundImage = "url('penguin_pngs/yeti.png')";
+		var timer = setTimeout(function () {
+			window.alert("Yaaaarrrrr!");
+		}, 250);
 	}
-	
+
 }
