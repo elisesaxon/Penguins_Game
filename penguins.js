@@ -29,7 +29,13 @@ window.onload = function() {
 		dropdown.options.add(option);
 	}
 	
+	var penguinholder = document.createElement("div");
+	penguinholder.id = "penguinholder";
+	
 	dropdown.onchange = function() { 
+		
+		document.getElementById("penguinholder").innerHTML = "";
+		
 		var numPenguins = this.value; 
 		
 		var yetiplace = Math.floor(Math.random() * numPenguins) + 1;
@@ -40,7 +46,7 @@ window.onload = function() {
 			if(num == yetiplace) {
 				var yetidiv = document.createElement("div");
 				yetidiv.className = "yeti";
-				gameholder.appendChild(yetidiv);
+				penguinholder.appendChild(yetidiv);
 	
 				var yeti = document.getElementsByClassName("yeti");
 				yeti[0].style.width = "200px";
@@ -55,7 +61,7 @@ window.onload = function() {
 				var pengdiv = document.createElement("div");
 				var namestr = "penguin" + String(i);
 				pengdiv.className = namestr;
-				gameholder.appendChild(pengdiv);
+				penguinholder.appendChild(pengdiv);
 				
 				var moundname = "mound_" + String(a);
 				var peng = document.getElementsByClassName(namestr);
@@ -114,4 +120,6 @@ window.onload = function() {
 		}	
 	}
 	gameholder.appendChild(dropdown);
+	
+	gameholder.appendChild(penguinholder);
 }
