@@ -48,18 +48,27 @@ window.onload = function() {
 		peng[0].style.height = "200px";
 		peng[0].style.cssFloat = "left";
 		peng[0].style.backgroundImage = "url('penguin_pngs/" + moundname + ".png')";
+	}
+	
+	for(let i=1; i<=8; i++) {
+		var namestr = "penguin" + String(i);
+		var peng = document.getElementsByClassName(namestr);
 		
-		var moundhover = moundname + "_hover";
 		peng[0].onmouseenter = function() {
-			this.style.backgroundImage = "url('penguin_pngs/" + moundhover + ".png')";
+			this.style.backgroundImage = "url('penguin_pngs/mound_" + String(i) + "_hover.png')";
 			this.style.cursor = "pointer";
 		}
 		
 		peng[0].onmouseleave = function() {
-			this.style.backgroundImage = "url('penguin_pngs/" + moundname + ".png')";
+			this.style.backgroundImage = "url('penguin_pngs/mound_" + String(i) + ".png')";
 			this.style.cursor = "auto";
 		}
+		
+		peng[0].onmousedown = function() {
+			this.style.backgroundImage = "url('penguin_pngs/penguin_" + String(i) + ".png')";
+		}
 	}
+	
 	
 	var yetidiv = document.createElement("div");
 	yetidiv.className = "yeti";
@@ -81,6 +90,8 @@ window.onload = function() {
 		this.style.cursor = "auto";
 	}
 	
-	
+	yeti[0].onmousedown = function() {
+		this.style.backgroundImage = "url('penguin_pngs/yeti.png')";
+	}
 	
 }
