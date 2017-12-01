@@ -25,7 +25,11 @@ window.onload = function() {
 	var numPenguins;
 	
 	var dropdown = document.createElement("select");
-	for(i=0; i<=64; i++) {
+	/*var option = document.createElement("option");
+	option.value = 0;
+	option.text = "num penguins";
+	dropdown.options.add(option);*/
+	for(i=2; i<=64; i++) {
 		var option = document.createElement("option");
 		option.value = i;
 		option.text = String(i);
@@ -34,13 +38,14 @@ window.onload = function() {
 	
 	dropdown.onchange = function() { 
 		numPenguins = this.value; 
-		console.log("NUM: "+numPenguins);
 	
-		var allpenguins = [];
+		//var allpenguins = [];
 		var num = numPenguins;
 	
 		while (num > 1) {
-			var i = num % 8;
+			var i = (num % 8) + 1;
+			
+			console.log("NUM: "+numPenguins + "   i: "+i);
 			
 			var pengdiv = document.createElement("div");
 			var namestr = "penguin" + String(i);
@@ -72,33 +77,35 @@ window.onload = function() {
 			}
 			
 			num -= 1;
-		}
+			
+			
+			
+			var yetidiv = document.createElement("div");
+			yetidiv.className = "yeti";
+			gameholder.appendChild(yetidiv);
 	
-		var yetidiv = document.createElement("div");
-		yetidiv.className = "yeti";
-		gameholder.appendChild(yetidiv);
+			var yeti = document.getElementsByClassName("yeti");
+			yeti[0].style.width = "200px";
+			yeti[0].style.height = "200px";
+			yeti[0].style.cssFloat = "left";
+			yeti[0].style.backgroundImage = "url('penguin_pngs/mound_9.png')";
 	
-		var yeti = document.getElementsByClassName("yeti");
-		yeti[0].style.width = "200px";
-		yeti[0].style.height = "200px";
-		yeti[0].style.cssFloat = "left";
-		yeti[0].style.backgroundImage = "url('penguin_pngs/mound_9.png')";
+			yeti[0].onmouseenter = function() {
+				this.style.backgroundImage = "url('penguin_pngs/mound_9_hover.png')";
+				this.style.cursor = "pointer";
+			}
+			
+			yeti[0].onmouseleave = function() {
+				this.style.backgroundImage = "url('penguin_pngs/mound_9.png')";
+				this.style.cursor = "auto";
+			}
 	
-		yeti[0].onmouseenter = function() {
-			this.style.backgroundImage = "url('penguin_pngs/mound_9_hover.png')";
-			this.style.cursor = "pointer";
-		}
-		
-		yeti[0].onmouseleave = function() {
-			this.style.backgroundImage = "url('penguin_pngs/mound_9.png')";
-			this.style.cursor = "auto";
-		}
-	
-		yeti[0].onmousedown = function() {
-			this.style.backgroundImage = "url('penguin_pngs/yeti.png')";
-			var timer = setTimeout(function () {
-				window.alert("Yaaaarrrrr!");
-			}, 250);
+			yeti[0].onmousedown = function() {
+				this.style.backgroundImage = "url('penguin_pngs/yeti.png')";
+				var timer = setTimeout(function () {
+					window.alert("Yaaaarrrrr!");
+				}, 250);
+			}
 		}
 	}
 	gameholder.appendChild(dropdown);
