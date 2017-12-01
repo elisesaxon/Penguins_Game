@@ -31,70 +31,75 @@ window.onload = function() {
 		option.text = String(i);
 		dropdown.options.add(option);
 	}
-	dropdown.onchange = function() { numPenguins = this.value; }
 	
-	gameholder.appendChild(dropdown);
+	dropdown.onchange = function() { 
+		numPenguins = this.value; 
+		console.log("NUM: "+numPenguins);
 	
+		var allpenguins = [];
+		var num = numPenguins;
 	
-	for(i=1; i<=8; i++) {
-		var pengdiv = document.createElement("div");
-		var namestr = "penguin" + String(i);
-		pengdiv.className = namestr;
-		gameholder.appendChild(pengdiv);
+		while (num > 1) {
+			var i = num % 8;
+			
+			var pengdiv = document.createElement("div");
+			var namestr = "penguin" + String(i);
+			pengdiv.className = namestr;
+			gameholder.appendChild(pengdiv);
 		
-		var moundname = "mound_" + String(i);
-		var peng = document.getElementsByClassName(namestr);
-		peng[0].style.width = "200px";
-		peng[0].style.height = "200px";
-		peng[0].style.cssFloat = "left";
-		peng[0].style.backgroundImage = "url('penguin_pngs/" + moundname + ".png')";
-	}
-	
-	for(let i=1; i<=8; i++) {
-		var namestr = "penguin" + String(i);
-		var peng = document.getElementsByClassName(namestr);
+			var moundname = "mound_" + String(i);
+			var peng = document.getElementsByClassName(namestr);
+			peng[0].style.width = "200px";
+			peng[0].style.height = "200px";
+			peng[0].style.cssFloat = "left";
+			peng[0].style.backgroundImage = "url('penguin_pngs/" + moundname + ".png')";
+			
+			var namestr = "penguin" + String(i);
+			var peng = document.getElementsByClassName(namestr);
 		
-		peng[0].onmouseenter = function() {
-			this.style.backgroundImage = "url('penguin_pngs/mound_" + String(i) + "_hover.png')";
+			peng[0].onmouseenter = function() {
+				this.style.backgroundImage = "url('penguin_pngs/mound_" + String(i) + "_hover.png')";
+				this.style.cursor = "pointer";
+			}
+		
+			peng[0].onmouseleave = function() {
+				this.style.backgroundImage = "url('penguin_pngs/mound_" + String(i) + ".png')";
+				this.style.cursor = "auto";
+			}
+		
+			peng[0].onmousedown = function() {
+				this.style.backgroundImage = "url('penguin_pngs/penguin_" + String(i) + ".png')";
+			}
+			
+			num -= 1;
+		}
+	
+		var yetidiv = document.createElement("div");
+		yetidiv.className = "yeti";
+		gameholder.appendChild(yetidiv);
+	
+		var yeti = document.getElementsByClassName("yeti");
+		yeti[0].style.width = "200px";
+		yeti[0].style.height = "200px";
+		yeti[0].style.cssFloat = "left";
+		yeti[0].style.backgroundImage = "url('penguin_pngs/mound_9.png')";
+	
+		yeti[0].onmouseenter = function() {
+			this.style.backgroundImage = "url('penguin_pngs/mound_9_hover.png')";
 			this.style.cursor = "pointer";
 		}
 		
-		peng[0].onmouseleave = function() {
-			this.style.backgroundImage = "url('penguin_pngs/mound_" + String(i) + ".png')";
+		yeti[0].onmouseleave = function() {
+			this.style.backgroundImage = "url('penguin_pngs/mound_9.png')";
 			this.style.cursor = "auto";
 		}
-		
-		peng[0].onmousedown = function() {
-			this.style.backgroundImage = "url('penguin_pngs/penguin_" + String(i) + ".png')";
+	
+		yeti[0].onmousedown = function() {
+			this.style.backgroundImage = "url('penguin_pngs/yeti.png')";
+			var timer = setTimeout(function () {
+				window.alert("Yaaaarrrrr!");
+			}, 250);
 		}
 	}
-	
-	
-	var yetidiv = document.createElement("div");
-	yetidiv.className = "yeti";
-	gameholder.appendChild(yetidiv);
-	
-	var yeti = document.getElementsByClassName("yeti");
-	yeti[0].style.width = "200px";
-	yeti[0].style.height = "200px";
-	yeti[0].style.cssFloat = "left";
-	yeti[0].style.backgroundImage = "url('penguin_pngs/mound_9.png')";
-	
-	yeti[0].onmouseenter = function() {
-		this.style.backgroundImage = "url('penguin_pngs/mound_9_hover.png')";
-		this.style.cursor = "pointer";
-	}
-		
-	yeti[0].onmouseleave = function() {
-		this.style.backgroundImage = "url('penguin_pngs/mound_9.png')";
-		this.style.cursor = "auto";
-	}
-	
-	yeti[0].onmousedown = function() {
-		this.style.backgroundImage = "url('penguin_pngs/yeti.png')";
-		var timer = setTimeout(function () {
-			window.alert("Yaaaarrrrr!");
-		}, 250);
-	}
-
+	gameholder.appendChild(dropdown);
 }
