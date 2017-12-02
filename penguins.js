@@ -1,5 +1,13 @@
-//https://googlecreativelab.github.io/coder-projects/projects/pop_up_penguins/
-
+/* 
+ * Find the Penguins
+ * by: Elise Saxon
+ * for CS 342: Web Scripting
+ *
+ * This file creates all the HTML and functionality for the 
+ * Find the Penguins game.
+ */
+ 
+ 
 window.onload = function() {
 	
 	document.body.style.backgroundColor = "#ccf5f5";
@@ -20,6 +28,10 @@ window.onload = function() {
 	apdtitlediv.style.width = "600px";
 	apdtitlediv.style.height = "150px";
 	apdtitlediv.style.backgroundImage = "url('penguin_pngs/penguin_title.png')";
+	
+	
+	var dropdownholder = document.createElement("div");
+	dropdownholder.id = "dropdownholder";
 	
 	var dropdown = document.createElement("select");
 	for(i=2; i<=64; i++) {
@@ -119,7 +131,12 @@ window.onload = function() {
 			num2 -= 1;
 		}	
 	}
-	gameholder.appendChild(dropdown);
+	dropdownholder.appendChild(dropdown);
+	gameholder.appendChild(dropdownholder);
+	var ddh = document.getElementById("dropdownholder");
+	ddh.style.display = "inline-block";
+	ddh.style.marginLeft = "auto";
+	ddh.style.marginRight = "auto";
 	
 	gameholder.appendChild(penguinholder);
 }
